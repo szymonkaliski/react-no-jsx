@@ -10,7 +10,7 @@ var TestSubComponent = React.createClass({
         return ["li", { className: "list__item" },
             this.props.text,
             " ",
-            ["a", { href: "#open" }, "open"],
+            ["a.list__link", { href: "#open" }, "open"],
         ];
     },
 });
@@ -26,7 +26,7 @@ var TestComponent = React.createClass({
     },
 
     renderTree: function () {
-        return ["ul", { className: "list" },
+        return ["ul#list_main", { className: "list" },
             this.renderList(),
             [],
             null,
@@ -48,10 +48,10 @@ var TestBasicComponent = React.createClass({
 describe("no-jsx mixin", function () {
     it("should convert the items returned by renderTree() to React elements", function () {
         var result = React.renderToStaticMarkup(React.createElement(TestComponent, {}));
-        result.should.equal("<ul class=\"list\">" +
-            "<li class=\"list__item\">foo <a href=\"#open\">open</a></li>" +
-            "<li class=\"list__item\">5 <a href=\"#open\">open</a></li>" +
-            "<li class=\"list__item\">meow <a href=\"#open\">open</a></li>" +
+        result.should.equal("<ul class=\"list\" id=\"list_main\">" +
+            "<li class=\"list__item\">foo <a href=\"#open\" class=\"list__link\">open</a></li>" +
+            "<li class=\"list__item\">5 <a href=\"#open\" class=\"list__link\">open</a></li>" +
+            "<li class=\"list__item\">meow <a href=\"#open\" class=\"list__link\">open</a></li>" +
         "</ul>");
     });
 
